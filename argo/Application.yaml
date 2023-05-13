@@ -1,0 +1,12 @@
+metadata:
+  name: argo
+  namespace: argocd
+spec:
+  destination:
+    namespace: argo
+    server: https://kubernetes.default.svc
+  project: res-k8s-open-source-apps
+  source:
+    path: argo/development
+    repoURL: git@github.com:resonance/res-k8s-open-source-apps.git
+    targetRevision: HEAD

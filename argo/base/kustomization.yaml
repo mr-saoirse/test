@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: argo
+resources:
+  - https://github.com/argoproj/argo-workflows//manifests/cluster-install?ref=v3.3.8
+images:
+  - name: quay.io/argoproj/argocli
+    newTag: v3.3.8
+  - name: quay.io/argoproj/workflow-controller
+    newTag: v3.3.8
+patches:
+  - path: workflow-controller-configmap.yaml
+    target:
+      version: v1
+      kind: ConfigMap
+      name: workflow-controller-configmap
+      namespace: argo
+  - path: argo-server.yaml
+    target:
+      version: v1
+      group: apps
+      kind: Deployment
+      name: argo-server
+      namespace: argo
+  - path: workflow-controller.yaml
+    target:
+      version: v1
+      group: apps
+      kind: Deployment
+      name: workflow-controller
+      namespace: argo

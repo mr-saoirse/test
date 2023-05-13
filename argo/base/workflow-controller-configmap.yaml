@@ -1,0 +1,36 @@
+#aws eks --region us-east-1 update-kubeconfig --name res-primary-cluster-prod
+#kubectl -n argo patch  configmap/workflow-controller-configmap --patch "$(cat workflow-controller-configmap.yaml)"
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: workflow-controller-configmap
+data:
+  artifactRepository: |-
+    archiveLogs: true
+    s3:
+      bucket: argo-dev-artifacts
+      endpoint: s3.amazonaws.com
+
+  persistence: |-
+    archive: true
+    archiveLabelSelector:
+      matchLabels:
+        workflows.argoproj.io/archive-strategy: "always"
+    postgresql:
+      host: argo-workflows-archive-db-postgresql.res-infrastructure.svc.cluster.local
+      port: 5432
+      database: postgraphile
+      tableName: argo_workflows
+      userNameSecret:
+        name: argo-postgres-config
+        key: username
+      passwordSecret:
+        name: argo-postgres-config
+        key: password
+
+  workflowDefaults: |-
+    metadata:
+      labels:
+        workflows.argoproj.io/archive-strategy: "always"
+
+#kubectl delete pods argo-server-864c576d55-pggvk argo-server-864c576d55-t2spj  workflow-controller-69498b567c-t5lfh  workflow-controller-69498b567c-5zs2m  workflow-controller-69498b567c-8s6cv --grace-period=0 --force -n argo

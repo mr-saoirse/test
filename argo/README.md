@@ -1,0 +1,1 @@
+This uses the published & pinned kustomize base in the argo-workflows repo.
