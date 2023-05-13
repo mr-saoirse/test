@@ -13,5 +13,5 @@ patches:
         artifactRepository: |-
           archiveLogs: true
           s3:
-            bucket: argo-dev-artifacts
+            bucket: argo-development-artifacts
             endpoint: s3.amazonaws.com

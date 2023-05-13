@@ -1,20 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: eks-cluster
+  name: eks-cluster-dev
 spec:
   destination:
-    name: ''
-    namespace: 'default'
-    server: 'https://kubernetes.default.svc'
+    name: "test"
+    namespace: "default"
+    server: "https://kubernetes.default.svc"
   source:
-    path: 'capi-cluster/aws-eks'
-    repoURL: '[Replace with your forked Git repo URL]'
+    path: "capi-cluster/aws-eks"
+    repoURL: git@github.com:mr-saoirse/test.git
     targetRevision: HEAD
     #helm:
-     # valueFiles:
-       # - values-c1.yaml
+    # valueFiles:
+    # - values-c1.yaml
   project: default
   syncPolicy:
     automated:
       prune: true
+#
