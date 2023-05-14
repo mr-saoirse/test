@@ -18,8 +18,3 @@ spec:
   syncPolicy:
     automated:
       prune: true
-#aws eks --region us-west-2 update-kubeconfig --namedefault_capi-eks-control-plane
-#aws eks describe-cluster --name default_capi-eks-control-plane-user@default_capi-eks-control-plane --region us-west-2 | jq '.cluster.endpoint'
-
-#kubectl apply -f ./management/argocd-eks-dev.yaml
-#kubectl get clusters
