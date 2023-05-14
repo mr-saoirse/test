@@ -22,3 +22,4 @@ spec:
 #aws eks describe-cluster --name default_capi-eks-control-plane-user@default_capi-eks-control-plane --region us-west-2 | jq '.cluster.endpoint'
 
 #kubectl apply -f ./management/argocd-eks-dev.yaml
+#kubectl get clusters

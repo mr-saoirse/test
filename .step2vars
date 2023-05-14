@@ -1,0 +1,6 @@
+
+export AWS_SSH_KEY_NAME=key-ap2
+export AWS_REGION=ap-northeast-2 # default same env - we could put this anywhere
+echo Using $AWS_REGION for the new cluster
+#aws ec2 create-key-pair --key-name key-ap2 --region ap-northeast-2 --query 'KeyMaterial' --output text > capi-eks.pem
+#clusterctl generate cluster capi-eks --flavor eks-managedmachinepool --kubernetes-version v1.22.6 --worker-machine-count=3 > ./capi-cluster/aws-eks/capi-eks.yaml

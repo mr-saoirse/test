@@ -1,0 +1,14 @@
+#step 0
+#we created a cluster with pulumi using its new and up actions - then we connect to it
+#aws eks --region us-east-1 update-kubeconfig --name eks-cluster-eksCluster-0db4eee
+
+#we one time create a stack for admin in our management cluster
+#clusterawsadm bootstrap iam create-cloudformation-stack --region us-east-1
+export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm bootstrap credentials encode-as-profile)
+export EXP_MACHINE_POOL=true
+export AWS_REGION=ap-northeast-2
+export CAPA_EKS_IAM=true
+echo $AWS_REGION in use for mangement cluster
+#https://cluster-api-aws.sigs.k8s.io/topics/eks/enabling.html
+# RUN
+#clusterctl init --infrastructure aws 

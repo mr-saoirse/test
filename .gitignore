@@ -1,2 +1,6 @@
 .secret
 capikubeconfig-eks
+clusterawsadm
+secret
+clusterctl
+*.pem

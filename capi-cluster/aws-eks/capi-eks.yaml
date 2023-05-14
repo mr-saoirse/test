@@ -30,8 +30,8 @@ metadata:
   name: capi-eks-control-plane
   namespace: default
 spec:
-  region: us-west-2
-  sshKeyName: capi-eks
+  region: ap-northeast-2
+  sshKeyName: key-ap2
   version: v1.22.6
 ---
 apiVersion: cluster.x-k8s.io/v1beta1
@@ -41,7 +41,7 @@ metadata:
   namespace: default
 spec:
   clusterName: capi-eks
-  replicas: 2
+  replicas: 3
   template:
     spec:
       bootstrap:
